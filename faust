@@ -1,0 +1,22 @@
+#!/bin/bash
+
+cd /sys/class/hwmon/ 
+
+for fa1 in hwmon*/; do 
+	cd "$fa1"
+	sr=$(cat name*) 
+
+	for fa2 in temp*_input; do
+	if [ -f "$fa2" ]; then
+		rs=$(cat "$fa2")
+		var=$((rs / 1000))
+		da1=${fa2/_input/_label}
+		if [ -f "$da1" ]; then
+			da2=$(cat "$da1")
+			echo "$sr $da2 $var°C"
+		fi
+	fi
+
+	done
+cd ..
+done
