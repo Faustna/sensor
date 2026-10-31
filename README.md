@@ -1,4 +1,4 @@
-simple linux system temperature monitor.
+simple linux system temperature monitor
 
 ## Installation
 
